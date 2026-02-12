@@ -9,6 +9,7 @@ pipeline {
         stage('Docker Push') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
+                    bat 'echo "${env.dockerUser}"'
                     bat 'docker login -u ${env.dockerUser} -p ${env.dockerPassword}'
                     bat 'docker push framvaq/jenkins-web:latest'
                 }
