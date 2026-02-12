@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    environment {
+      DOCKER = credentials('docker')
+      // DOCKER == user:pass
+      // DOCKER_USR == user
+      // DOCKER_PSw == pass
+    }
     stages {
         stage('Docker Build') {
             steps {
@@ -8,10 +14,8 @@ pipeline {
         }
         stage('Docker Push') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
-                    pwsh "docker login -u ${env.dockerUser} -p ${env.dockerPassword}"
-                    pwsh 'docker push framirezv/jenkins-web:latest'
-                }
+                pwsh "docker login -u ${env.DOCKER_USR} -p ${env.DOCKER_PSW}"
+                pwsh 'docker push framirezv/jenkins-web:latest'
             }
         }
     }
