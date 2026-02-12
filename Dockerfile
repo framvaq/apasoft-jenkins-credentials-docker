@@ -1,5 +1,5 @@
 FROM debian 
-LABEL Francico Ramirez="francisco.ramirezvaquero@gmail.com" 
+LABEL Francisco Ramirez="francisco.ramirezvaquero@gmail.com" 
 ##Actualizamos el sistema 
 RUN apt-get update 
 ##Instalamos nginx 
