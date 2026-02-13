@@ -1,10 +1,10 @@
 pipeline {
     agent any
     environment {
-      DOCKER = credentials('docker')
-      // DOCKER == user:pass
-      // DOCKER_USR == user
-      // DOCKER_PSw == pass
+        DOCKER = credentials('docker')
+        // DOCKER == user:pass
+        // DOCKER_USR == user
+        // DOCKER_PSw == pass
     }
     stages {
         stage('Docker Build') {
